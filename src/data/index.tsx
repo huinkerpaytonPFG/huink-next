@@ -9,7 +9,7 @@ const usePokemon = (url) => {
   const { data, error } = useSWRImuttable(url, fetcher.get)
 
   return {
-    pokemon: data?.results,
+    pokemon: data,
     isLoading: !error && !data,
     isError: error
   }

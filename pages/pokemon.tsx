@@ -16,11 +16,9 @@ const Home = () => {
 	return (
 		<main>
 			<h1>Learn more about the mons</h1>
-			{isLoading?
-				<p>Catching Pokemon</p> :
 				<>
 					<Row equalHeight={true}>
-						{pokemon && pokemon.map(({ name }: Pokemon) => (
+						{pokemon?.results && pokemon?.results.map(({ name }: Pokemon) => (
 							<Col span={4} key={name}>
 								<Card>
 									<CardSection>
@@ -46,7 +44,6 @@ const Home = () => {
 						</span>
 					</div>
 				</>
-			}
 		</main>
 	)
 }

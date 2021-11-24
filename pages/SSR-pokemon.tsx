@@ -9,6 +9,7 @@ import react, { useState } from "react";
 const fetcher = {
 	get: (url: string) => axios.get(url).then((resp) => resp.data)
 }
+
 const API = "https://pokeapi.co/api/v2/pokemon?limit=20";
 
 interface Pokemon {
