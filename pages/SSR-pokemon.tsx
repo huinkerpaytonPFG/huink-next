@@ -17,20 +17,20 @@ interface Pokemon {
 	url: string
 }
 
-export const getStaticProps: GetServerSideProps = async (context) => {
-	const pokemonAPI = await fetcher.get(API);
+// export const getStaticProps: GetServerSideProps = async (context) => {
+// 	const pokemonAPI = await fetcher.get(API);
 
-	return {
-		props: {
-			fallback: {
-				[API]: pokemonAPI
-			}
-		}
-	}
+// 	return {
+// 		props: {
+// 			fallback: {
+// 				[API]: pokemonAPI
+// 			}
+// 		}
+// 	}
 
-}
+// }
 
-const Home = ({ fallback }) => {
+const Home = () => {
 	// Use state to set the url since it comes back in the request for the next one.
 	const [url, setUrl] = useState(API);
 	// Initial call should be happening serverside
