@@ -5,7 +5,7 @@ const fetcher = {
 	get: (url: string) => axios.get(url).then((resp) => resp.data)
 }
 
-const usePokemon = (url) => {
+const usePokemon = (url: string) => {
   const { data, error } = useSWRImuttable(url, fetcher.get)
 
   return {
