@@ -37,6 +37,7 @@ const Home = () => {
 	const { data: pokemonList } = useSWR(url, fetcher.get)
 
 	return (
+		<p>This page doesnt do anything yet.. maybe someday</p>
 		// <SWRConfig value={{ fallback }}>
 		// 	<main>
 		// 		<h1>Learn more about the mons</h1>
