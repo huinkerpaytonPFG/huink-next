@@ -37,37 +37,37 @@ const Home = ({ fallback }) => {
 	const { data: pokemonList } = useSWR(url, fetcher.get)
 
 	return (
-		<SWRConfig value={{ fallback }}>
-			<main>
-				<h1>Learn more about the mons</h1>
-				<Row equalHeight={true}>
-					{pokemonList?.results && pokemonList.results.map(({ name }: Pokemon) => (
-						<Col span={4}>
-							<Card>
-								<CardSection>
-									<CardTitle>{name}</CardTitle>
-									<p>Stuff</p>
-									<Button variant="primary">Learn more<span className="sr-only">about {name}</span></Button>
-								</CardSection>
-							</Card>
-						</Col>
-					))}
-				</Row>
+		// <SWRConfig value={{ fallback }}>
+		// 	<main>
+		// 		<h1>Learn more about the mons</h1>
+		// 		<Row equalHeight={true}>
+		// 			{pokemonList?.results && pokemonList.results.map(({ name }: Pokemon) => (
+		// 				<Col span={4}>
+		// 					<Card>
+		// 						<CardSection>
+		// 							<CardTitle>{name}</CardTitle>
+		// 							<p>Stuff</p>
+		// 							<Button variant="primary">Learn more<span className="sr-only">about {name}</span></Button>
+		// 						</CardSection>
+		// 					</Card>
+		// 				</Col>
+		// 			))}
+		// 		</Row>
 			
-				<div>
-					{pokemonList?.previous ?
-						<Button variant="primary-white-fill" onClick={() => setUrl(pokemonList.previous)}>Previous</Button> :
-						<Button disabled>Previous</Button>
-					}
-					<span style={{float: "right"}}>
-						{pokemonList?.next ?
-							<Button variant="primary-white-fill" onClick={() => setUrl(pokemonList.next)}>Next</Button> :
-							<Button disabled>Next</Button>
-						}
-					</span>
-				</div>
-			</main>
-		</SWRConfig>
+		// 		<div>
+		// 			{pokemonList?.previous ?
+		// 				<Button variant="primary-white-fill" onClick={() => setUrl(pokemonList.previous)}>Previous</Button> :
+		// 				<Button disabled>Previous</Button>
+		// 			}
+		// 			<span style={{float: "right"}}>
+		// 				{pokemonList?.next ?
+		// 					<Button variant="primary-white-fill" onClick={() => setUrl(pokemonList.next)}>Next</Button> :
+		// 					<Button disabled>Next</Button>
+		// 				}
+		// 			</span>
+		// 		</div>
+		// 	</main>
+		// </SWRConfig>
 	)
 }
 
