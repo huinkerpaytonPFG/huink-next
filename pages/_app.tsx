@@ -1,3 +1,4 @@
+import "@pds/table/table.min.css";
 import "@pds-react/core/dist/core.min.css";
 import "@pds-react/grid/dist/grid.min.css";
 import '@pds-react/button/dist/button.min.css';

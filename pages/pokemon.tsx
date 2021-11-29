@@ -26,15 +26,13 @@ const Home = () => {
 	const watchSearch = formContext.watch("search", "");
 	const filteredPokemon = pokemon?.results.filter(({ name }: Pokemon) => name.toLowerCase().includes(watchSearch.toLowerCase()));
 	const showTheMons = watchSearch.length > 2 && filteredPokemon.length;
-	console.log(watchSearch);
-	console.log(filteredPokemon);
 
 	return (
 		<main>
 			<h1>Find a 'mon</h1>
 			{pokemon?.results && (
 				<Row>
-					<Col md={8}>
+					<Col lg={10}>
             <FormProvider {...formContext}>
               <form
                 noValidate
@@ -62,20 +60,25 @@ const Home = () => {
 				}
 			</div>
 			{showTheMons &&
-				<Card>
-					<CardSection>
-						<table className="pds-table">
-							<tbody>
-								{filteredPokemon.map(({ name }: Pokemon) => (
-									<tr key={`${name}-row`}>
-										<td>{name}</td>
-										<td><Button variant="primary">Learn more<span className="sr-only">about {name}</span></Button></td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</CardSection>
-				</Card>
+				<Row>
+					<Col lg={10}>
+						<Card>
+							<CardSection>
+								<CardTitle as="h2">Search results</CardTitle>
+							</CardSection>
+							<table className="pds-table">
+								<tbody>
+									{filteredPokemon.map(({ name }: Pokemon) => (
+										<tr key={`${name}-row`}>
+											<th scope="row">{name}</th>
+											<td><Button variant="primary">Learn more<span className="sr-only">about {name}</span></Button></td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</Card>
+					</Col>
+				</Row>
 			}
 		</main>
 	)
