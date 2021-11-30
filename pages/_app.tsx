@@ -11,7 +11,9 @@ import React, { FC } from "react";
 const HuinkNext: FC<AppProps> = ({ Component, pageProps }) => (
 
     <div className="container">
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
     </div>
 );
 

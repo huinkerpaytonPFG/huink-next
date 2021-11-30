@@ -5,6 +5,7 @@ import Card, { CardSection, CardTitle } from "@pds-react/card";
 import react, { useState } from "react";
 import Input from "../src/react-hook-form-components/input";
 import { FormProvider, useForm } from "react-hook-form";
+import Link from 'next/link';
 
 interface Pokemon {
 	name: string,
@@ -15,7 +16,7 @@ interface FormData {
   search: string;
 }
 
-const Home = () => {
+const PokemonSearch = () => {
 	const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=1000");
 	const { pokemon, isError, isLoading } = usePokemon(url)
 	const formContext = useForm<FormData>({
@@ -28,7 +29,7 @@ const Home = () => {
 	const showTheMons = watchSearch.length > 2 && filteredPokemon.length;
 
 	return (
-		<main>
+		<>
 			<h1>Find a 'mon</h1>
 			{pokemon?.results && (
 				<Row>
@@ -54,12 +55,11 @@ const Home = () => {
 			)}
 			<div aria-live="polite" aria-atomic="true">
 				{showTheMons ? 
-					<p>There are {filteredPokemon.length} Pokemon matching that search</p>
-					: watchSearch.length > 2 &&
-						<p>There are no mons matching that search</p>
+					<p>There are <strong>{filteredPokemon.length} Pok&eacute;mon</strong> matching your search</p> :
+					<></>
 				}
 			</div>
-			{showTheMons &&
+			{showTheMons ?
 				<Row>
 					<Col lg={10}>
 						<Card>
@@ -71,7 +71,11 @@ const Home = () => {
 									{filteredPokemon.map(({ name }: Pokemon) => (
 										<tr key={`${name}-row`}>
 											<th scope="row">{name}</th>
-											<td><Button variant="primary">Learn more<span className="sr-only">about {name}</span></Button></td>
+											<td className="pds-typography-right">
+												<Link href={`details/${name}`}>
+													<Button variant="primary-white-fill" as="a" >Learn more<span className="sr-only">about {name}</span></Button>
+												</Link>
+											</td>
 										</tr>
 									))}
 								</tbody>
@@ -79,10 +83,12 @@ const Home = () => {
 						</Card>
 					</Col>
 				</Row>
+			: watchSearch.length > 2 &&
+				<p>Oh bugger! There are no mons matching your search</p>
 			}
-		</main>
+		</>
 	)
 }
 
 
-export default Home;
+export default PokemonSearch;
