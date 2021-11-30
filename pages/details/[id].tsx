@@ -22,8 +22,6 @@ const Details = () => {
 							</Card>
 						</Col>
 					</Row>
-					<Row>
-					</Row>
 				</>
 			}
 		</>

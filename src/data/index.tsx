@@ -15,4 +15,4 @@ const usePokemon = (url: string) => {
   }
 }
 
-export { usePokemon };
+export { usePokemon, fetcher };

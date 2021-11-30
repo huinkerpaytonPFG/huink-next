@@ -1,31 +1,34 @@
-import { usePokemon } from "../src/data";
+import { GetStaticProps } from 'next';
 import Button from "@pds-react/button";
 import { Row, Col } from "@pds-react/grid";
 import Card, { CardSection, CardTitle } from "@pds-react/card";
-import react, { useState } from "react";
 import Input from "../src/react-hook-form-components/input";
 import { FormProvider, useForm } from "react-hook-form";
 import Link from 'next/link';
 
 interface Pokemon {
-	name: string,
-	url: string
+	results: [{
+		name: string,
+		url: string
+	}]
 }
 
 interface FormData {
   search: string;
 }
 
-const PokemonSearch = () => {
-	const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=1000");
-	const { pokemon, isError, isLoading } = usePokemon(url)
+interface SSRProps {
+	pokemon: Pokemon
+}
+
+const PokemonSearchSSR = ({ pokemon }: SSRProps) => {
 	const formContext = useForm<FormData>({
 		mode: "onChange",
     defaultValues: { search: "" },
 	});
 
 	const watchSearch = formContext.watch("search", "");
-	const filteredPokemon = pokemon?.results.filter(({ name }: Pokemon) => name.toLowerCase().includes(watchSearch.toLowerCase()));
+	const filteredPokemon = pokemon?.results.filter(({ name }) => name.toLowerCase().includes(watchSearch.toLowerCase()));
 	const showTheMons = watchSearch.length > 2 && filteredPokemon.length;
 
 	return (
@@ -68,7 +71,7 @@ const PokemonSearch = () => {
 							</CardSection>
 							<table className="pds-table">
 								<tbody>
-									{filteredPokemon.map(({ name }: Pokemon) => (
+									{filteredPokemon.map(({ name }) => (
 										<tr key={`${name}-row`}>
 											<th scope="row">{name}</th>
 											<td className="pds-typography-right">
@@ -90,5 +93,15 @@ const PokemonSearch = () => {
 	)
 }
 
+export default PokemonSearchSSR
 
-export default PokemonSearch;
+export const getStaticProps: GetStaticProps = async () => {
+	const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000");
+	const pokemon = await res.json();
+
+	return {
+		props: {
+			pokemon,
+		}
+	}
+}
