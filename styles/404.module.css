@@ -1,0 +1,6 @@
+.jpg-404 { display: none }
+
+@media(prefers-reduced-motion: reduce) {
+	.jpg-404 { display: block }
+	.gif-404 { display: none }
+}
