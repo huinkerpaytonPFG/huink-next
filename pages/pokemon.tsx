@@ -30,7 +30,7 @@ const PokemonSearch = () => {
 
 	return (
 		<>
-			<h1>Find a 'mon</h1>
+			<h1>Find a &#39;mon</h1>
 			{pokemon?.results && (
 				<Row>
 					<Col lg={10}>
