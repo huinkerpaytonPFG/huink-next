@@ -1,6 +1,6 @@
 import { usePokemon } from "../src/data";
 import Button from "@pds-react/button";
-import {Row, Col} from "@pds-react/grid";
+import { Row, Col } from "@pds-react/grid";
 import Card, { CardSection, CardTitle } from "@pds-react/card";
 import react, { useState } from "react";
 import Input from "../src/react-hook-form-components/input";
@@ -72,7 +72,7 @@ const PokemonSearch = () => {
 										<tr key={`${name}-row`}>
 											<th scope="row">{name}</th>
 											<td className="pds-typography-right">
-												<Link href={`details/${name}`}>
+												<Link href={`details/${name}`} passHref>
 													<Button variant="primary-white-fill" as="a" >Learn more<span className="sr-only">about {name}</span></Button>
 												</Link>
 											</td>
