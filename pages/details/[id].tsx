@@ -8,7 +8,7 @@ export interface Props {
 	pokemon: PokeDetails,
 }
 
-const Details = ({ pokemon }: Props) => {
+const Details = ({ pokemon, evolution }: Props) => {
 	const monNumber = (num: number) => num.toString().padStart(3, "0")
 	return (
 		<>
@@ -23,6 +23,16 @@ const Details = ({ pokemon }: Props) => {
 							</Card>
 						</Col>
 					</Row>
+					{/* <Row>
+						<h2>Evolutions</h2>
+						<ul>
+							{evolution.chain.evolves_to.map(({ species }) => (
+								<li>{species.name}</li>
+							))}
+						</ul>
+						<h2>Forms</h2>
+						
+					</Row> */}
 				</>
 			}
 		</>
@@ -31,11 +41,17 @@ const Details = ({ pokemon }: Props) => {
 
 export default Details;
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
-	const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query.id}`).then((resp) => resp.data)
-	// const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.id}`);
-	// const pokemon = await res.json();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+	// const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query.id}`, { proxy: false }).then((resp) => resp.data)
+	// const species = await axios.get(pokemon.species.url, { proxy: false }).then((resp) => resp.data);
+	// const evolution = await axios.get(species.evolution_chain.url, { proxy: false }).then((resp) => resp.data);
+	const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.id}`);
+	const pokemon = await res.json();
 	return {
-			props: { pokemon },
+			props: { 
+				pokemon,
+				// evolution,
+				// species
+			},
 	};
 }
