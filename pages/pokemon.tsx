@@ -21,7 +21,7 @@ interface SSRProps {
 	pokemon: Pokemon
 }
 
-const PokemonSearchSSR = ({ pokemon }: SSRProps) => {
+const PokemonSearch = ({ pokemon }: SSRProps) => {
 	const formContext = useForm<FormData>({
 		mode: "onChange",
     defaultValues: { search: "" },
@@ -93,7 +93,7 @@ const PokemonSearchSSR = ({ pokemon }: SSRProps) => {
 	)
 }
 
-export default PokemonSearchSSR
+export default PokemonSearch;
 
 export const getStaticProps: GetStaticProps = async () => {
 	const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000");
