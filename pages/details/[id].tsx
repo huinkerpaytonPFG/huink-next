@@ -8,7 +8,7 @@ export interface Props {
 	pokemon: PokeDetails,
 }
 
-const Details = ({ pokemon, evolution }: Props) => {
+const Details = ({ pokemon }: Props) => {
 	const monNumber = (num: number) => num.toString().padStart(3, "0")
 	return (
 		<>
