@@ -1,11 +1,19 @@
 export default interface Details {
-	abilities: [{}],
+	abilities: [{
+		ability: {
+			name: string,
+			url: string
+		},
+		is_hidden: boolean,
+	}],
 	forms: [{
 		name: string,
 		url: string
 	}],
 	name: string,
 	id: number,
+	height: string,
+	weight: string,
 	game_indices: [{}],
 	sprites: {
     front_default: string,
@@ -20,5 +28,9 @@ export default interface Details {
         front_default: string
       }
 		}
-	}
+	},
+	types: [{
+		slot: number,
+		type: { name: string, url: string }
+	}],
 }

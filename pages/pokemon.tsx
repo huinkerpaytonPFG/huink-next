@@ -1,24 +1,20 @@
 import { GetStaticProps } from 'next';
+// import { useAtom } from 'jotai';
 import Button from "@pds-react/button";
 import { Row, Col } from "@pds-react/grid";
 import Card, { CardSection, CardTitle } from "@pds-react/card";
 import Input from "../src/react-hook-form-components/input";
 import { FormProvider, useForm } from "react-hook-form";
 import Link from 'next/link';
+import { pokedex, PokemonRequest } from "../atoms/pokedex-atom";
 
-interface Pokemon {
-	results: [{
-		name: string,
-		url: string
-	}]
-}
 
 interface FormData {
   search: string;
 }
 
 interface SSRProps {
-	pokemon: Pokemon
+	pokemon: PokemonRequest
 }
 
 const PokemonSearch = ({ pokemon }: SSRProps) => {
@@ -30,6 +26,7 @@ const PokemonSearch = ({ pokemon }: SSRProps) => {
 	const watchSearch = formContext.watch("search", "");
 	const filteredPokemon = pokemon?.results.filter(({ name }) => name.toLowerCase().includes(watchSearch.toLowerCase()));
 	const showTheMons = watchSearch.length > 2 && filteredPokemon.length;
+	// const [, setDex] = useAtom(pokedex);
 
 	return (
 		<>
@@ -76,7 +73,7 @@ const PokemonSearch = ({ pokemon }: SSRProps) => {
 											<th scope="row">{name}</th>
 											<td className="pds-typography-right">
 												<Link href={`details/${name}`} passHref>
-													<Button variant="primary-white-fill" as="a" >Learn more<span className="sr-only">about {name}</span></Button>
+													<Button variant="primary-white-fill" as="a">Learn more<span className="sr-only">about {name}</span></Button>
 												</Link>
 											</td>
 										</tr>
