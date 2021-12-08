@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import { Row, Col } from "@pds-react/grid";
 import Button from "@pds-react/button";
-// import { useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import WhosThatPoke from "../src/components/whos-that-mon";
 import { pokedex, PokemonRequest } from "../atoms/pokedex-atom";
 import react, { useState } from "react";
@@ -21,6 +21,12 @@ interface SSRProps {
 
 const PokeGuess = ({ pokemon }: SSRProps) => {
 	const [start, setStart] = useState(false);
+	const [, setDex] = useAtom(pokedex);
+	const letsGo = () => {
+		setStart(true);
+		setDex(pokemon);
+	}
+	console.log("page render");
 
 	return (
 		<>
@@ -34,7 +40,7 @@ const PokeGuess = ({ pokemon }: SSRProps) => {
 					{!start ? 
 						<>
 							<h2>Ready to play?</h2>
-							<Button variant="primary" onClick={() => setStart(true)}>Let&#39;s go!</Button>
+							<Button variant="primary" onClick={() => letsGo()}>Let&#39;s go!</Button>
 						</>
 						: <WhosThatPoke />
 					}
