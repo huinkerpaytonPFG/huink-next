@@ -1,5 +1,5 @@
 export const WhosThatPoke = () => {
-	// Will have to use SWR to fetch. S
+	// Will have to use SWR to fetch.
 	// Have to exclude the guess that has already happened? Should they be exluded from the random list as well? 
 
 	// const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1500");

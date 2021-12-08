@@ -6,6 +6,10 @@ import WhosThatPoke from "../src/components/whos-that-mon";
 import { pokedex, PokemonRequest } from "../atoms/pokedex-atom";
 import react, { useState } from "react";
 
+// To do..
+// Share original fetch between this and whos that mon component
+// Get a list of 5 pokemon and exlude the actual pokemon and maybe the rest from the list.
+
 
 interface FormData {
   search: string;
