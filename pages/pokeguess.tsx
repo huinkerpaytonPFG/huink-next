@@ -42,7 +42,7 @@ const PokeGuess = ({ pokemon }: SSRProps) => {
 							<h2>Ready to play?</h2>
 							<Button variant="primary" onClick={() => letsGo()}>Let&#39;s go!</Button>
 						</>
-						: <WhosThatPoke />
+						: <WhosThatPoke mons={pokemon} />
 					}
 				</Col>
 			</Row>
