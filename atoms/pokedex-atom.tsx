@@ -1,10 +1,10 @@
 import { atom } from 'jotai';
 
 export interface PokemonRequest{
-	results: [{
+	results: Array<{
 		name: string,
 		url: string
-	}]
+	}>
 }
 
 export const pokedex = atom<Partial<PokemonRequest>>({});

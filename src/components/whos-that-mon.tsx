@@ -26,9 +26,9 @@ export const WhosThatPoke = ({ mons }: SSRProps) => {
 	useEffect(() => {
 		console.log("render");
 		if (!guess) {
-			const arr = new Set();
+			const arr = new Set<number>();
 			while(arr.size !== 5) arr.add(Math.floor(Math.random() * mons.results.length) + 1);
-			const list = Array.from(arr).map((num) => mons.results[num as any]);
+			const list = Array.from(arr).map((num) => mons.results[num]);
 			const fetchData = async () => setGuess(await fetcher.get(list[Math.floor(Math.random() * 4)].url));
 
 			fetchData();
