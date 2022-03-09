@@ -1,11 +1,7 @@
 import { atom } from 'jotai';
+import { Pokemon, Mon } from "../data/pokemon";
 
-export interface PokemonRequest{
-	results: Array<{
-		name: string,
-		url: string
-	}>
-}
+
 
 export const pokedex = atom<Partial<PokemonRequest>>({});
 

@@ -1,12 +1,13 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 // import { useAtom } from 'jotai';
 import Button from "@pds-react/button";
 import { Row, Col } from "@pds-react/grid";
 import Card, { CardSection, CardTitle } from "@pds-react/card";
 import Input from "../src/react-hook-form-components/input";
 import { FormProvider, useForm } from "react-hook-form";
-import Link from 'next/link';
-import { pokedex, PokemonRequest } from "../atoms/pokedex-atom";
+import { Pokemon } from "../src/data/pokemon";
+// import { pokedex } from "../atoms/pokedex-atom";
 
 
 interface FormData {
@@ -14,7 +15,7 @@ interface FormData {
 }
 
 interface SSRProps {
-	pokemon: PokemonRequest
+	pokemon: Pokemon
 }
 
 const PokemonSearch = ({ pokemon }: SSRProps) => {
@@ -24,14 +25,14 @@ const PokemonSearch = ({ pokemon }: SSRProps) => {
 	});
 
 	const watchSearch = formContext.watch("search", "");
-	const filteredPokemon = pokemon?.results.filter(({ name }) => name.toLowerCase().includes(watchSearch.toLowerCase()));
+	const filteredPokemon = pokemon?.filter(({ name }) => name.toLowerCase().includes(watchSearch.toLowerCase()));
 	const showTheMons = watchSearch.length > 2 && filteredPokemon.length;
 	// const [, setDex] = useAtom(pokedex);
 
 	return (
 		<>
 			<h1>Find a &#39;mon</h1>
-			{pokemon?.results && (
+			{pokemon && (
 				<Row>
 					<Col lg={10}>
             <FormProvider {...formContext}>

@@ -5,6 +5,8 @@ const fetcher = {
 	get: (url: string) => axios.get(url).then((resp) => resp.data)
 }
 
+
+// For the usecase this seemed like overkill to have to add all of the additional things to the app to handle SWR SSR
 const usePokemon = (url: string) => {
   const { data, error } = useSWRImuttable(url, fetcher.get)
 

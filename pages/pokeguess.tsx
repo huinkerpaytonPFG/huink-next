@@ -1,10 +1,11 @@
+import react, { useState } from "react";
 import { GetStaticProps } from 'next';
 import { Row, Col } from "@pds-react/grid";
 import Button from "@pds-react/button";
-import { useAtom } from 'jotai';
+// import { useAtom } from 'jotai';
 import WhosThatPoke from "../src/components/whos-that-mon";
-import { pokedex, PokemonRequest } from "../atoms/pokedex-atom";
-import react, { useState } from "react";
+// import { pokedex } from "../atoms/pokedex-atom";
+import { PokemonRequest } from "../src/data/pokemon";
 
 // To do..
 // Share original fetch between this and whos that mon component
@@ -21,19 +22,18 @@ interface SSRProps {
 
 const PokeGuess = ({ pokemon }: SSRProps) => {
 	const [start, setStart] = useState(false);
-	const [, setDex] = useAtom(pokedex);
+	// const [, setDex] = useAtom(pokedex);
 	const letsGo = () => {
 		setStart(true);
-		setDex(pokemon);
+		// setDex(pokemon);
 	}
-	console.log("page render");
 
 	return (
 		<>
 			<Row>
 				<Col span={6}>
 					<h1>Who&#39;s that Pok&eacute;mon?!</h1>
-					<p>Can you guess all {pokemon.results.length} Pok&eacute;mon?!</p>
+					<p>Can you guess all {pokemon.pokemon_species.length} Pok&eacute;mon?!</p>
 					<p>Let&#39;s start with 10...</p>
 				</Col>
 				<Col span={6}>
@@ -42,7 +42,7 @@ const PokeGuess = ({ pokemon }: SSRProps) => {
 							<h2>Ready to play?</h2>
 							<Button variant="primary" onClick={() => letsGo()}>Let&#39;s go!</Button>
 						</>
-						: <WhosThatPoke mons={pokemon} />
+						: <WhosThatPoke pokemon={pokemon.pokemon_species} />
 					}
 				</Col>
 			</Row>
@@ -53,7 +53,7 @@ const PokeGuess = ({ pokemon }: SSRProps) => {
 export default PokeGuess;
 
 export const getStaticProps: GetStaticProps = async () => {
-	const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1500");
+	const res = await fetch("https://pokeapi.co/api/v2/generation/1");
 	const pokemon = await res.json();
 
 	return {
