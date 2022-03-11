@@ -36,7 +36,6 @@
     "swr": "^1.0.0"
   },
   "devDependencies": {
-    "@ris/cypress-utils": "^1.2.0",
     "@testing-library/cypress": "^8.0.2",
     "@types/react": "17.0.19",
     "cypress": "7.4.0",
