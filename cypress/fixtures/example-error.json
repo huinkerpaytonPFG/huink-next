@@ -1,0 +1,10 @@
+{
+	"errors": [
+		{
+			"text": "Error text.",
+			"textHTML": "Error text/html",
+			"reason": "ERROR_REASON",
+			"source": "errorSource"
+		}
+	]
+}

@@ -74,7 +74,7 @@ const PokemonSearch = ({ pokemon }: SSRProps) => {
 											<th scope="row">{name}</th>
 											<td className="pds-typography-right">
 												<Link href={`details/${name}`} passHref>
-													<Button variant="primary-white-fill" as="a">Learn more<span className="sr-only">about {name}</span></Button>
+													<Button variant="secondary-ghost" as="a">Learn more<span className="sr-only">about {name}</span></Button>
 												</Link>
 											</td>
 										</tr>
@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	return {
 		props: {
-			pokemon,
+			pokemon: pokemon.results,
 		}
 	}
 }

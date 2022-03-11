@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import { Pokemon, Mon } from "../data/pokemon";
+import { PokemonRequest } from "../src/data/pokemon";
 
 
 

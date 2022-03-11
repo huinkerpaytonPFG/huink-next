@@ -5,7 +5,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "e2e:local": "cypress open --env E2E_ENV=LOCAL",
+    "e2e:sit": "cypress run --env E2E_ENV=SIT",
+    "e2e:uat": "cypress run --env E2E_ENV=UAT",
+    "e2e:prod": "cypress run --env E2E_ENV=PROD",
+    "e2e:ci": "cypress run --env E2E_ENV=CI",
+    "e2e:ws": "cypress open --env E2E_ENV=WS,WS_REGION=UAT,WS_PORT=9443"
   },
   "dependencies": {
     "@nsk/form": "0.0.25",
@@ -30,10 +36,15 @@
     "swr": "^1.0.0"
   },
   "devDependencies": {
+    "@ris/cypress-utils": "^1.2.0",
+    "@testing-library/cypress": "^8.0.2",
     "@types/react": "17.0.19",
+    "cypress": "7.4.0",
+    "cypress-tags": "^0.3.0",
     "eslint": "7.32.0",
     "eslint-config-next": "^12.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "node-sass": "5.0.0",
-    "typescript": "4.3.5"
+    "typescript": "^4.6.2"
   }
 }
